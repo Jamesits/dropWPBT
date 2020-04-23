@@ -67,8 +67,6 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE* SystemTable)
 		Ascii2UnicodeStr((CHAR8*)(Xsdt->OemId), OemStr, 6);
 		UINT32 EntryCount = (Xsdt->Length - sizeof(EFI_ACPI_SDT_HEADER)) / sizeof(UINT64);
 		Print(L"%HXSDT OEM ID: %s Tables: %d%N\n", OemStr, EntryCount);
-
-		// break if we found the XSDT but there is no BGRT
 		break;
 
 	next_table:
