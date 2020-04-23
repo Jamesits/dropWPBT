@@ -3,7 +3,7 @@
 #include "effy/src/acpi_dump.h"
 #include "effy/src/nstdlib.h"
 #include "effy/src/xsdt.h"
-#include "Effy/src/acpi_checksum.h"
+#include "effy/src/acpi_checksum.h"
 
 // Application entrypoint (must be set to 'efi_main' for gnu-efi crt0 compatibility)
 EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE* SystemTable)
