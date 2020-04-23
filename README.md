@@ -11,11 +11,29 @@ Disables the WPBT table in your firmware. This program use a non-permenant, non-
 
 ### Installation
 
-Put `dropWPBT.efi` to a location where it will be executed every time before Windows starts. If you are using rEFInd, put it under `ESP:\EFI\refind\drivers_x64`. You can also load it using UEFI shell's `startup.nsh`.
+#### With 3rd party bootloader
 
-### Uninstallation
+Put `dropWPBT.efi` to a location where it will be executed every time before Windows starts.
 
-Delete `dropWPBT.efi` and reboot.
+* [rEFInd](https://www.rodsbooks.com/refind/): `ESP:\EFI\refind\drivers_x64`
+* [OpenCore](https://github.com/acidanthera/OpenCorePkg): `ESP:\EFI\OC\Drivers`
+* [Clover](https://github.com/CloverHackyColor/CloverBootloader): `ESP:\EFI\CLOVER\drivers\UEFI`
+
+You can also load it using UEFI shell's `startup.nsh`, or even manually.
+
+#### Without an external bootloader
+
+This method is for advanced users. You need to be familiar with how UEFI works. The commands below is just for reference, do not blindly copy and paste!
+
+`dropWPBT-loader.efi` can act as a bootloader itself. To install, launch a `cmd.exe` with Administrator privilege and type something like this:
+
+```
+mountvol T: /S
+mkdir T:\EFI\boot
+cp dropWPBT-loader.efi T:\EFI\boot\bootx64.efi
+bcdedit /set {bootmgr} path \EFI\boot\bootx64.efi
+mountvol T: /D
+```
 
 ## FAQ
 
