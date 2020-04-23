@@ -72,8 +72,5 @@
     <ClInclude Include="..\..\Effy\src\xsdt.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\SklLpitTable.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

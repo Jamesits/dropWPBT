@@ -409,7 +409,6 @@
     <ClInclude Include="..\..\Effy\src\gop.h" />
     <ClInclude Include="..\..\Effy\src\nstdlib.h" />
     <ClInclude Include="..\..\Effy\src\xsdt.h" />
-    <ClInclude Include="..\..\SklLpitTable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
