@@ -1,17 +1,18 @@
 # dropWPBT
 
-Disables the WPBT table in your firmware. This program use a non-permenant, non-destructive method to remove the table from system memory, so it should be executed every time the computer is rebooted before Windows bootloader starts.
+Disables the WPBT in your firmware. This program use a non-permenant, non-destructive method to remove the table from system memory, so it should be executed every time the computer is rebooted before Windows bootloader starts.
 
 ## Usage
 
 ### Requirements
 
-* UEFI-enabled firmware
-* Disabled Secure Boot (or sign it yourself)
+* amd64 architecture
+* UEFI firmware
+* disabled Secure Boot (or sign it yourself)
 
 ### Installation
 
-#### With 3rd party bootloader
+#### With a 3rd party bootloader
 
 Put `dropWPBT.efi` to a location where it will be executed every time before Windows starts.
 
@@ -54,14 +55,21 @@ Note that they might not work if you enabled [HVCI](https://docs.microsoft.com/e
 
 ### How do I know if my OS is already tainted?
 
-Search for `C:\Windows\system32\wpbbin.exe`.
+Search for `C:\Windows\system32\wpbbin.exe`. Note this program might delete itself after running so this is not a reliable evidence.
 
 ### What will happen if I forget to run `dropWPBT.efi` once?
 
 The program inside the WPBT table runs, which typically means your Windows installation is tainted.
 
-### Is there is a permenant method to remove the WPBT table from my firmware?
+### Is there any alternative methods to disable the WPBT?
 
-Some motherboards' firmware provide options to disable WPBT. 
+Hackintosh-oriented bootloaders such as OpenCore have their own config for deleting ACPI tables. Please see their documentation. 
+
+### Is there is a permenant method to remove the WPBT from my firmware?
+
+Some vendors provide an option to disable WPBT on some models. 
+
+* Lenovo: [Lenovo LSE Windows Disabler Tool](https://support.lenovo.com/no/zh/downloads/ds104370)
+* ASUS: Disable "ASUS Grid Install Service"
 
 The only permenant method known to me is to modify your motherboard's UEFI firmware. The method is different for every motherboard; you need to have a dump of the UEFI firmware and need to bypass some limitations. I won't stop you from doing that, but keep in mind that you might destory your computer on the way and you will be the only one responsible for it.
