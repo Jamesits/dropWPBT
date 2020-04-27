@@ -65,7 +65,7 @@ The program inside the WPBT table runs, which typically means your Windows insta
 
 #### From Windows
 
-To disable WPBT execution from Windows, set the following registry key:
+This is an undocumented feature, use it at your own risk. To disable WPBT execution from Windows, set the following registry key:
 
 ```ini
 Windows Registry Editor Version 5.00
