@@ -80,11 +80,9 @@ How to set a registry key on the first boot before session manager starts is lef
 
 Hackintosh-oriented bootloaders such as OpenCore have their own config for deleting ACPI tables which does exact the same thing as this program. Please see their documentation. 
 
-### Is there is a permenant method to remove the WPBT from my firmware?
+#### From the Firmware
 
-Some vendors provide an option to disable WPBT on some models. 
+Some vendors provide an option to disable WPBT in the firmware settings on some models. 
 
 * Lenovo: [Lenovo LSE Windows Disabler Tool](https://support.lenovo.com/no/zh/downloads/ds104370)
 * ASUS: Disable "ASUS Grid Install Service"
-
-The only permenant method known to me is to modify your motherboard's UEFI firmware. The method is different for every motherboard; you need to have a dump of the UEFI firmware and need to bypass some limitations. I won't stop you from doing that, but keep in mind that you might destory your computer on the way and you will be the only one responsible for it.
