@@ -78,7 +78,7 @@ How to set a registry key on the first boot before session manager starts is lef
 
 #### From a 3rd-party Bootloader
 
-Hackintosh-oriented bootloaders such as OpenCore have their own config for deleting ACPI tables which does exact the same thing as this program. Please see their documentation. 
+Hackintosh-oriented bootloaders such as OpenCore have their own config for deleting ACPI tables which does exactly the same thing as this program. Please see their documentation. 
 
 #### From the Firmware
 
