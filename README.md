@@ -1,6 +1,6 @@
 # dropWPBT
 
-Disables the WPBT in your firmware. This program use a non-permenant, non-destructive method to remove the table from system memory, so it should be executed every time the computer is rebooted before Windows bootloader starts.
+Disables the Windows Platform Binary Table (WPBT) in your firmware. This program use a non-permenant, non-destructive method to remove the table from system memory, so it should be executed every time the computer is rebooted before Windows bootloader starts.
 
 ## Usage
 
@@ -12,7 +12,7 @@ Disables the WPBT in your firmware. This program use a non-permenant, non-destru
 
 ### Installation
 
-#### With a 3rd party bootloader
+#### With a 3rd-party bootloader
 
 Put `dropWPBT.efi` to a location where it will be executed every time before Windows starts.
 
@@ -40,7 +40,7 @@ mountvol T: /D
 
 ### What is WPBT?
 
-[WPBT](https://download.microsoft.com/download/8/A/2/8A2FB72D-9B96-4E2D-A559-4A27CF905A80/windows-platform-binary-table.docx) is an ACPI table in your firmware allowing your computer vendor to run a program every time Windows (8 or later) boots. This is a convenient method for computer vendors to force the installation of a service program or an anti-theft software, but this also means your fresh installed Windows will have potentially unwanted 3rd party programs running straight on the first boot, and the end user would have basically no control over it. Also, firmware is not updated as frequently as your OS or everyday software, which means if there is a security vulnerability in the WPBT-loaded program, a fair number of users might never get the update.
+[Windows Platform Binary Table (WPBT)](https://download.microsoft.com/download/8/A/2/8A2FB72D-9B96-4E2D-A559-4A27CF905A80/windows-platform-binary-table.docx) is an ACPI table in your firmware allowing your computer vendor to run a program every time Windows (8 or later) boots. This is a convenient method for computer vendors to force the installation of a service program or an anti-theft software, but this also means your fresh installed Windows will have potentially unwanted 3rd party programs running straight on the first boot, and the end user would have basically no control over it. Also, firmware is not updated as frequently as your OS or everyday software, which means if there is a security vulnerability in the WPBT-loaded program, a fair number of users might never get the update.
 
 A lot PC vendors ([Lenovo](https://borncity.com/win/2017/12/06/vendors-rootkit-windows-platform-binary-table-wpbt/), [ASUS](https://www.dpreview.com/forums/thread/4438288), etc.) are known to utilize WPBT table to run their own programs on the consumer's computer.
 
@@ -63,7 +63,22 @@ The program inside the WPBT table runs, which typically means your Windows insta
 
 ### Is there any alternative methods to disable the WPBT?
 
-Hackintosh-oriented bootloaders such as OpenCore have their own config for deleting ACPI tables. Please see their documentation. 
+#### From Windows
+
+To disable WPBT execution from Windows, set the following registry key:
+
+```ini
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager]
+"DisableWpbtExecution"=dword:00000001
+```
+
+How to set a registry key on the first boot before session manager starts is left as an exercise to the reader. For more information, see [`sminit.c`](https://careers.microsoft.com/).
+
+#### From a 3rd-party Bootloader
+
+Hackintosh-oriented bootloaders such as OpenCore have their own config for deleting ACPI tables which does exact the same thing as this program. Please see their documentation. 
 
 ### Is there is a permenant method to remove the WPBT from my firmware?
 
