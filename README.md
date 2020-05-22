@@ -68,7 +68,7 @@ Windows Registry Editor Version 5.00
 "DisableWpbtExecution"=dword:00000001
 ```
 
-How to set a registry key on the first boot before session manager starts is left as an exercise to the reader. (Hint: One possible method is to set this registry key in a WIM file using [BiscuitTin/Disable-WpbtExecution](https://github.com/BiscuitTin/Disable-WpbtExecution)).
+How to set a registry key on the first boot before session manager starts is left as an exercise to the reader. (Hint: One possible method is to set this registry key in a WIM file using [BiscuitTin/Disable-WpbtExecution](https://github.com/BiscuitTin/Disable-WpbtExecution).)
 
 For more information, see [`sminit.c`](https://careers.microsoft.com/).
 
