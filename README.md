@@ -8,7 +8,7 @@ Disables the Windows Platform Binary Table (WPBT) in your firmware. This program
 
 * amd64 architecture
 * UEFI firmware
-* disabled Secure Boot (or sign it yourself)
+* disabled Secure Boot
 
 ### Installation
 
@@ -40,11 +40,11 @@ mountvol T: /D
 
 ### What is WPBT?
 
-[Windows Platform Binary Table (WPBT)](https://download.microsoft.com/download/8/A/2/8A2FB72D-9B96-4E2D-A559-4A27CF905A80/windows-platform-binary-table.docx) is an ACPI table in your firmware allowing your computer vendor to run a program every time Windows (8 or later) boots. This is a convenient method for computer vendors to force the installation of a service program or an anti-theft software, but this also means your fresh installed Windows will have potentially unwanted 3rd party programs running straight on the first boot, and the end user would have basically no control over it. Also, firmware is not updated as frequently as your OS or everyday software, which means if there is a security vulnerability in the WPBT-loaded program, a fair number of users might never get the update.
+[Windows Platform Binary Table (WPBT)](https://download.microsoft.com/download/8/A/2/8A2FB72D-9B96-4E2D-A559-4A27CF905A80/windows-platform-binary-table.docx) is an ACPI table in your firmware allowing your computer vendor to run a program every time Windows (8 or later) boots. This is a convenient method for computer vendors to force the installation of a service program or an anti-theft software, but this also means your fresh installed Windows will have potentially unwanted 3rd party programs running straight on the first boot, and you, the end user, would have no control over it. Also, firmware is not updated as frequently as your OS or software, which means if there is a security vulnerability in the WPBT-loaded program, a fair number of users might never get the update.
 
-A lot PC vendors ([Lenovo](https://borncity.com/win/2017/12/06/vendors-rootkit-windows-platform-binary-table-wpbt/), [ASUS](https://www.dpreview.com/forums/thread/4438288), etc.) are known to utilize WPBT table to run their own programs on the consumer's computer.
+A lot PC vendors ([Lenovo](https://borncity.com/win/2017/12/06/vendors-rootkit-windows-platform-binary-table-wpbt/), [ASUS](https://www.dpreview.com/forums/thread/4438288), [Huawei](https://www.v2ex.com/t/665111), etc.) are known to utilize WPBT table to run their own programs on the consumer's computer.
 
-### How to verify if my computer have the WPBT table?
+### How to verify if my computer have a WPBT?
 
 You can use one of the following software:
 
@@ -53,19 +53,13 @@ You can use one of the following software:
 
 Note that they might not work if you enabled [HVCI](https://docs.microsoft.com/en-us/windows/security/threat-protection/device-guard/enable-virtualization-based-protection-of-code-integrity).
 
-### How do I know if my OS is already tainted?
-
-Search for `C:\Windows\system32\wpbbin.exe`. Note this program might delete itself after running so this is not a reliable evidence.
-
-### What will happen if I forget to run `dropWPBT.efi` once?
-
-The program inside the WPBT table runs, which typically means your Windows installation is tainted.
+Alternatively you can search for `C:\Windows\system32\wpbbin.exe`. This program might delete itself after running so this is not a reliable evidence.
 
 ### Is there any alternative methods to disable the WPBT?
 
 #### From Windows
 
-This is an undocumented feature, use it at your own risk. To disable WPBT execution from Windows, set the following registry key:
+This is an undocumented feature, use it at your own risk. To disable WPBT execution from a running Windows, set the following registry key:
 
 ```ini
 Windows Registry Editor Version 5.00
@@ -74,7 +68,9 @@ Windows Registry Editor Version 5.00
 "DisableWpbtExecution"=dword:00000001
 ```
 
-How to set a registry key on the first boot before session manager starts is left as an exercise to the reader. For more information, see [`sminit.c`](https://careers.microsoft.com/).
+How to set a registry key on the first boot before session manager starts is left as an exercise to the reader. (Hint: One possible method is to set this registry key in a WIM file using [BiscuitTin/Disable-WpbtExecution](https://github.com/BiscuitTin/Disable-WpbtExecution)).
+
+For more information, see [`sminit.c`](https://careers.microsoft.com/).
 
 #### From a 3rd-party Bootloader
 
